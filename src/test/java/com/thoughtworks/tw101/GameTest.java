@@ -15,12 +15,14 @@ import static org.mockito.Mockito.*;
 public class GameTest {
     private PrintStream printStream;
     private BufferedReader bufferedReader;
+    private GameBoard gameBoard;
     private Game game;
 
     @Before
     public void setUp() throws Exception {
         bufferedReader = mock(BufferedReader.class);
         printStream = mock(PrintStream.class);
+        gameBoard = mock(GameBoard.class);
         when(bufferedReader.readLine()).thenReturn("1","2","3","4","5","6","7","8","9");
         game = new Game(printStream, bufferedReader);
 
@@ -30,6 +32,19 @@ public class GameTest {
     public void shouldDisplayGameBoardWhenStarting() throws Exception {
         game.start();
         verify(printStream).println("1|2|3\n-----\n4|5|6\n-----\n7|8|9");
+    }
+
+    @Test
+    public void shouldInitializeBoardWhenStarting() throws Exception {
+        game.start();
+        verify(gameBoard).initialize();
+    }
+
+    @Test
+    public void shouldDisplayInitialBoardWhenStarting() throws Exception {
+        game.start();
+        verify(gameBoard).display();
+
     }
 
     @Test
@@ -98,10 +113,26 @@ public class GameTest {
     }
 
     @Test
-    public void shouldEndGameWhenPlayerHasWonByFillingRowHorizontally() throws Exception {
+    public void shouldEndGameWhenPlayer1HasWonByFillingRow() throws Exception {
         when(bufferedReader.readLine()).thenReturn("1", "4", "2", "5", "3", "6", "7", "8", "9");
         game.start();
         verify(printStream).println("Player 1 Wins!");
 
+    }
+
+    @Test
+    public void shouldEndGameWhenPlayer2HasWonByFillingRow() throws Exception {
+        when(bufferedReader.readLine()).thenReturn("4","1","7","2","5","3","6","8","9");
+        game.start();
+        verify(printStream).println("Player 2 Wins!");
+
+    }
+
+    @Test
+    //should fail
+    public void shouldEndGameWhenPlayerWinsByFillingColumn() throws Exception {
+        when(bufferedReader.readLine()).thenReturn("1","2","4","3","7","5","6","8","9");
+        game.start();
+        verify(printStream).println("Player 1 Wins!");
     }
 }

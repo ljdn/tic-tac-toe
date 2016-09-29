@@ -8,18 +8,23 @@ import java.io.PrintStream;
  * Created by lduan on 9/29/16.
  */
 public class Game {
+    private GameBoard board;
     private PrintStream printStream;
     private BufferedReader bufferedReader;
     private String gameBoard = "1|2|3\n-----\n4|5|6\n-----\n7|8|9";
-    private int moves = 0;
+    private int moves;
 
     public Game(PrintStream printStream, BufferedReader bufferedReader) {
         this.printStream = printStream;
         this.bufferedReader = bufferedReader;
+        this.board = new GameBoard(printStream);
+        this.moves = 0;
     }
 
     public void start() {
         printStream.println(gameBoard);
+        board.initialize();
+        board.display();
 
         while (this.moves < 9) {
 
