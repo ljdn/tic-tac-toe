@@ -24,6 +24,10 @@ public class Game {
         while (this.moves < 9) {
 
             playerMove(1);
+            if (hasWon("X")) {
+                printStream.println("Player 1 Wins!");
+                return;
+            }
 
             if (this.moves == 9) {
                 printStream.println("Game is a draw");
@@ -31,9 +35,17 @@ public class Game {
             }
 
             playerMove(2);
+            if (hasWon("O")) {
+                printStream.println("Player 2 Wins!");
+                return;
+            }
 
         }
 
+    }
+
+    private boolean hasWon(String token) {
+        return gameBoard.contains(token + "|" + token + "|" +token);
     }
 
     private void playerMove(int player) {
