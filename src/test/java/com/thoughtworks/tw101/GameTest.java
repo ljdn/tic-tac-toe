@@ -90,4 +90,10 @@ public class GameTest {
         verify(printStream).println("X|O|X\n-----\nO|X|O\n-----\nX|O|X");
 
     }
+
+    @Test
+    public void shouldDisplayGameIsADrawMessageWhenBoardIsFull() throws Exception {
+        game.start();
+        verify(printStream).println("Game is a draw");
+    }
 }

@@ -28,7 +28,10 @@ public class Game {
             this.moves+=1;
             printStream.println(gameBoard);
 
-            if (moves == 9) { return; }
+            if (moves == 9) {
+                printStream.println("Game is a draw");
+                return;
+            }
 
             printStream.println("Player 2: Make a move");
             playerMove(2);
