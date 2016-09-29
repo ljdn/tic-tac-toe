@@ -21,29 +21,26 @@ public class GameTest {
     public void setUp() throws Exception {
         bufferedReader = mock(BufferedReader.class);
         printStream = mock(PrintStream.class);
+        when(bufferedReader.readLine()).thenReturn("1","2","3","4","5","6","7","8","9");
         game = new Game(printStream, bufferedReader);
-        when(bufferedReader.readLine()).thenReturn("stop");
 
     }
 
     @Test
     public void shouldDisplayGameBoardWhenStarting() throws Exception {
-        when(bufferedReader.readLine()).thenReturn("1", "2");
         game.start();
         verify(printStream).println("1|2|3\n-----\n4|5|6\n-----\n7|8|9");
     }
 
     @Test
     public void shouldAskFirstPlayerForMoveWhenStarting() throws Exception {
-        when(bufferedReader.readLine()).thenReturn("1", "2");
         game.start();
-        verify(printStream).println("Player 1: Make a move");
+        verify(printStream, atLeastOnce()).println("Player 1: Make a move");
 
     }
 
     @Test
     public void shouldRedrawBoardWithXInLocation1WhenPlayer1ChoosesLocation1() throws Exception {
-        when(bufferedReader.readLine()).thenReturn("1", "2");
         game.start();
         verify(printStream, atLeastOnce()).println("X|2|3\n-----\n4|5|6\n-----\n7|8|9");
 
@@ -51,7 +48,7 @@ public class GameTest {
 
     @Test
     public void shouldRedrawBoardWithXInLocation2WhenPlayer1ChoosesLocation2() throws Exception {
-        when(bufferedReader.readLine()).thenReturn("2", "1");
+        when(bufferedReader.readLine()).thenReturn("2","1","3","4","5","6","7","8","9");
         game.start();
         verify(printStream, atLeastOnce()).println("1|X|3\n-----\n4|5|6\n-----\n7|8|9");
 
@@ -59,22 +56,21 @@ public class GameTest {
 
     @Test
     public void shouldAskSecondPlayerForMoveWhenPlayerOneHasMoved() throws Exception {
-        when(bufferedReader.readLine()).thenReturn("1", "2");
         game.start();
-        verify(printStream).println("Player 2: Make a move");
+        verify(printStream, atLeastOnce()).println("Player 2: Make a move");
 
     }
 
     @Test
     public void shouldRedrawBoardWithOInLocation1WhenPlayer2ChoosesLocation1() throws Exception {
-        when(bufferedReader.readLine()).thenReturn("2", "1");
+        when(bufferedReader.readLine()).thenReturn("2","1","3","4","5","6","7","8","9");
         game.start();
         verify(printStream).println("O|X|3\n-----\n4|5|6\n-----\n7|8|9");
     }
 
     @Test
     public void shouldDisplayErrorMessageWhenPlayerSelectsLocationThatIsOccupied() throws Exception {
-        when(bufferedReader.readLine()).thenReturn("1", "1", "2");
+        when(bufferedReader.readLine()).thenReturn("1","1,","2","3","4","5","6","7","8","9");
         game.start();
         verify(printStream).println("Location already taken!");
 
@@ -82,9 +78,16 @@ public class GameTest {
 
     @Test
     public void shouldAllowUserToKeepSelectingMovesUntilOneIsValid() throws Exception {
-        when(bufferedReader.readLine()).thenReturn("1", "1", "1", "2");
+        when(bufferedReader.readLine()).thenReturn("1","1", "1", "2","3","4","5","6","7","8","9");
         game.start();
         verify(printStream).println("X|O|3\n-----\n4|5|6\n-----\n7|8|9");
+
+    }
+
+    @Test
+    public void shouldAlternateTurnsWhenBoardIsNotFull() throws Exception {
+        game.start();
+        verify(printStream).println("X|O|X\n-----\nO|X|O\n-----\nX|O|X");
 
     }
 }

@@ -11,6 +11,7 @@ public class Game {
     private PrintStream printStream;
     private BufferedReader bufferedReader;
     private String gameBoard = "1|2|3\n-----\n4|5|6\n-----\n7|8|9";
+    private int moves = 0;
 
     public Game(PrintStream printStream, BufferedReader bufferedReader) {
         this.printStream = printStream;
@@ -19,12 +20,23 @@ public class Game {
 
     public void start() {
         printStream.println(gameBoard);
-        printStream.println("Player 1: Make a move");
-        playerMove(1);
-        printStream.println(gameBoard);
-        printStream.println("Player 2: Make a move");
-        playerMove(2);
-        printStream.println(gameBoard);
+
+        while (this.moves < 9) {
+
+            printStream.println("Player 1: Make a move");
+            playerMove(1);
+            this.moves+=1;
+            printStream.println(gameBoard);
+
+            if (moves == 9) { return; }
+
+            printStream.println("Player 2: Make a move");
+            playerMove(2);
+            this.moves+=1;
+            printStream.println(gameBoard);
+
+        }
+
     }
 
     private void playerMove(int player) {
