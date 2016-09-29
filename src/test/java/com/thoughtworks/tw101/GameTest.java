@@ -2,6 +2,7 @@ package com.thoughtworks.tw101;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.stubbing.OngoingStubbing;
 
 import java.io.BufferedReader;
 import java.io.PrintStream;
@@ -40,7 +41,7 @@ public class GameTest {
     }
 
     @Test
-    public void shouldRedrawBoardWithXWhenPlayerChoosesLocation() throws Exception {
+    public void shouldRedrawBoardWithXInLocation1WhenPlayerChoosesLocation1() throws Exception {
         when(bufferedReader.readLine()).thenReturn("1");
         game.start();
         verify(printStream).println("X|2|3\n-----\n4|5|6\n-----\n7|8|9");
