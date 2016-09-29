@@ -23,6 +23,8 @@ public class Game {
         playerMove(1);
         printStream.println(gameBoard);
         printStream.println("Player 2: Make a move");
+        playerMove(2);
+        printStream.println(gameBoard);
     }
 
     private void playerMove(int player) {
@@ -35,37 +37,7 @@ public class Game {
         }
         try {
             String move = bufferedReader.readLine();
-            switch (move) {
-                case "1":
-                    gameBoard = token + "|2|3\n-----\n4|5|6\n-----\n7|8|9";
-                    break;
-                case "2":
-                    gameBoard = "1|" + token + "|3\n-----\n4|5|6\n-----\n7|8|9";
-                    break;
-                case "3":
-                    gameBoard = "1|2|" + token + "\n-----\n4|5|6\n-----\n7|8|9";
-                    break;
-                case "4":
-                    gameBoard = "1|2|3\n-----\n" + token + "|5|6\n-----\n7|8|9";
-                    break;
-                case "5":
-                    gameBoard = "1|2|3\n-----\n4|" + token + "|6\n-----\n7|8|9";
-                    break;
-                case "6":
-                    gameBoard = "1|2|3\n-----\n4|5|" + token + "\n-----\n7|8|9";
-                    break;
-                case "7":
-                    gameBoard = "1|2|3\n-----\n4|5|6\n-----\n" + token + "|8|9";
-                    break;
-                case "8":
-                    gameBoard = "1|2|3\n-----\n4|5|6\n-----\n7|" + token + "|9";
-                    break;
-                case "9":
-                    gameBoard = "1|2|3\n-----\n4|5|6\n-----\n7|8|" + token;
-                    break;
-
-            }
-
+            gameBoard = gameBoard.replace(move, token);
         } catch (IOException e) { e.printStackTrace(); }
     }
 }

@@ -7,9 +7,7 @@ import org.mockito.stubbing.OngoingStubbing;
 import java.io.BufferedReader;
 import java.io.PrintStream;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 /**
  * Created by lduan on 9/29/16.
@@ -46,7 +44,7 @@ public class GameTest {
     public void shouldRedrawBoardWithXInLocation1WhenPlayer1ChoosesLocation1() throws Exception {
         when(bufferedReader.readLine()).thenReturn("1");
         game.start();
-        verify(printStream).println("X|2|3\n-----\n4|5|6\n-----\n7|8|9");
+        verify(printStream, atLeastOnce()).println("X|2|3\n-----\n4|5|6\n-----\n7|8|9");
 
     }
 
@@ -54,7 +52,7 @@ public class GameTest {
     public void shouldRedrawBoardWithXInLocation2WhenPlayer1ChoosesLocation2() throws Exception {
         when(bufferedReader.readLine()).thenReturn("2");
         game.start();
-        verify(printStream).println("1|X|3\n-----\n4|5|6\n-----\n7|8|9");
+        verify(printStream, atLeastOnce()).println("1|X|3\n-----\n4|5|6\n-----\n7|8|9");
 
     }
 
