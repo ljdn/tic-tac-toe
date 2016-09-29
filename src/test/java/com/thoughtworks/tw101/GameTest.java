@@ -29,12 +29,14 @@ public class GameTest {
 
     @Test
     public void shouldDisplayGameBoardWhenStarting() throws Exception {
+        when(bufferedReader.readLine()).thenReturn("1");
         game.start();
         verify(printStream).println("1|2|3\n-----\n4|5|6\n-----\n7|8|9");
     }
 
     @Test
     public void shouldAskFirstPlayerForMoveWhenStarting() throws Exception {
+        when(bufferedReader.readLine()).thenReturn("1");
         game.start();
         verify(printStream).println("Player 1: Make a move");
 
@@ -45,6 +47,14 @@ public class GameTest {
         when(bufferedReader.readLine()).thenReturn("1");
         game.start();
         verify(printStream).println("X|2|3\n-----\n4|5|6\n-----\n7|8|9");
+
+    }
+
+    @Test
+    public void shouldRedrawBoardWithXInLocation2WhenPlayerChoosesLocation2() throws Exception {
+        when(bufferedReader.readLine()).thenReturn("2");
+        game.start();
+        verify(printStream).println("1|X|3\n-----\n4|5|6\n-----\n7|8|9");
 
     }
 }
