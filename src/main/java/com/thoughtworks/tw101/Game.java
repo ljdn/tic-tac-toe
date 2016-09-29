@@ -15,5 +15,6 @@ public class Game {
 
     public void start() {
         printStream.println("1|2|3\n-----\n4|5|6\n-----\n7|8|9");
+        printStream.println("Player 1: Make a move");
     }
 }
