@@ -96,4 +96,12 @@ public class GameTest {
         game.start();
         verify(printStream).println("Game is a draw");
     }
+
+    @Test
+    public void shouldEndGameWhenPlayerHasWonByFillingRowHorizontally() throws Exception {
+        when(bufferedReader.readLine()).thenReturn("1", "4", "2", "5", "3", "6", "7", "8", "9");
+        game.start();
+        verify(printStream).println("Player 1 Wins!");
+
+    }
 }

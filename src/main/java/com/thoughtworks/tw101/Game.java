@@ -23,26 +23,22 @@ public class Game {
 
         while (this.moves < 9) {
 
-            printStream.println("Player 1: Make a move");
             playerMove(1);
-            this.moves+=1;
-            printStream.println(gameBoard);
 
-            if (moves == 9) {
+            if (this.moves == 9) {
                 printStream.println("Game is a draw");
                 return;
             }
 
-            printStream.println("Player 2: Make a move");
             playerMove(2);
-            this.moves+=1;
-            printStream.println(gameBoard);
 
         }
 
     }
 
     private void playerMove(int player) {
+        printStream.println("Player " + player + ": Make a move");
+
         String token;
         if (player == 1) {
             token = "X";
@@ -61,5 +57,8 @@ public class Game {
             gameBoard = gameBoard.replace(move, token);
 
         } catch (IOException e) { e.printStackTrace(); }
+
+        printStream.println(gameBoard);
+        this.moves++;
     }
 }
