@@ -38,9 +38,13 @@ public class Game {
 
         try {
             String move = bufferedReader.readLine();
-            if (gameBoard.contains(move)) {
-                gameBoard = gameBoard.replace(move, token);
-            } else { printStream.println("Location already taken"); }
+            while (!(gameBoard.contains(move))) {
+                printStream.println("Location already taken!");
+                printStream.println("Try again");
+                move = bufferedReader.readLine();
+            }
+            gameBoard = gameBoard.replace(move, token);
+
         } catch (IOException e) { e.printStackTrace(); }
     }
 }
