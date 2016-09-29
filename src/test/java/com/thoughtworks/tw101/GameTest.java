@@ -70,4 +70,12 @@ public class GameTest {
         game.start();
         verify(printStream).println("O|X|3\n-----\n4|5|6\n-----\n7|8|9");
     }
+
+    @Test
+    public void shouldDisplayErrorMessageWhenPlayerSelectsLocationThatIsOccupied() throws Exception {
+        when(bufferedReader.readLine()).thenReturn("1");
+        game.start();
+        verify(printStream).println("Location already taken");
+
+    }
 }

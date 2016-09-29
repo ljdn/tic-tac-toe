@@ -35,9 +35,12 @@ public class Game {
         else {
             token = "O";
         }
+
         try {
             String move = bufferedReader.readLine();
-            gameBoard = gameBoard.replace(move, token);
+            if (gameBoard.contains(move)) {
+                gameBoard = gameBoard.replace(move, token);
+            } else { printStream.println("Location already taken"); }
         } catch (IOException e) { e.printStackTrace(); }
     }
 }
