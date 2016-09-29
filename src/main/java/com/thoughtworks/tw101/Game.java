@@ -10,6 +10,7 @@ import java.io.PrintStream;
 public class Game {
     private PrintStream printStream;
     private BufferedReader bufferedReader;
+    private String gameBoard = "1|2|3\n-----\n4|5|6\n-----\n7|8|9";
 
     public Game(PrintStream printStream, BufferedReader bufferedReader) {
         this.printStream = printStream;
@@ -17,9 +18,10 @@ public class Game {
     }
 
     public void start() {
-        printStream.println("1|2|3\n-----\n4|5|6\n-----\n7|8|9");
+        printStream.println(gameBoard);
         printStream.println("Player 1: Make a move");
         playerMove();
+        printStream.println(gameBoard);
         printStream.println("Player 2: Make a move");
     }
 
@@ -28,31 +30,31 @@ public class Game {
             String move = bufferedReader.readLine();
             switch (move) {
                 case "1":
-                    printStream.println("X|2|3\n-----\n4|5|6\n-----\n7|8|9");
+                    gameBoard = "X|2|3\n-----\n4|5|6\n-----\n7|8|9";
                     break;
                 case "2":
-                    printStream.println("1|X|3\n-----\n4|5|6\n-----\n7|8|9");
+                    gameBoard = "1|X|3\n-----\n4|5|6\n-----\n7|8|9";
                     break;
                 case "3":
-                    printStream.println("1|2|X\n-----\n4|5|6\n-----\n7|8|9");
+                    gameBoard = "1|2|X\n-----\n4|5|6\n-----\n7|8|9";
                     break;
                 case "4":
-                    printStream.println("1|2|3\n-----\nX|5|6\n-----\n7|8|9");
+                    gameBoard = "1|2|3\n-----\nX|5|6\n-----\n7|8|9";
                     break;
                 case "5":
-                    printStream.println("1|2|3\n-----\n4|X|6\n-----\n7|8|9");
+                    gameBoard = "1|2|3\n-----\n4|X|6\n-----\n7|8|9";
                     break;
                 case "6":
-                    printStream.println("1|2|3\n-----\n4|5|X\n-----\n7|8|9");
+                    gameBoard = "1|2|3\n-----\n4|5|X\n-----\n7|8|9";
                     break;
                 case "7":
-                    printStream.println("1|2|3\n-----\n4|5|6\n-----\nX|8|9");
+                    gameBoard = "1|2|3\n-----\n4|5|6\n-----\nX|8|9";
                     break;
                 case "8":
-                    printStream.println("1|2|3\n-----\n4|5|6\n-----\n7|X|9");
+                    gameBoard = "1|2|3\n-----\n4|5|6\n-----\n7|X|9";
                     break;
                 case "9":
-                    printStream.println("1|2|3\n-----\n4|5|6\n-----\n7|8|X");
+                    gameBoard = "1|2|3\n-----\n4|5|6\n-----\n7|8|X";
                     break;
 
             }

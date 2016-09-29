@@ -43,7 +43,7 @@ public class GameTest {
     }
 
     @Test
-    public void shouldRedrawBoardWithXInLocation1WhenPlayerChoosesLocation1() throws Exception {
+    public void shouldRedrawBoardWithXInLocation1WhenPlayer1ChoosesLocation1() throws Exception {
         when(bufferedReader.readLine()).thenReturn("1");
         game.start();
         verify(printStream).println("X|2|3\n-----\n4|5|6\n-----\n7|8|9");
@@ -51,7 +51,7 @@ public class GameTest {
     }
 
     @Test
-    public void shouldRedrawBoardWithXInLocation2WhenPlayerChoosesLocation2() throws Exception {
+    public void shouldRedrawBoardWithXInLocation2WhenPlayer1ChoosesLocation2() throws Exception {
         when(bufferedReader.readLine()).thenReturn("2");
         game.start();
         verify(printStream).println("1|X|3\n-----\n4|5|6\n-----\n7|8|9");
@@ -64,5 +64,12 @@ public class GameTest {
         game.start();
         verify(printStream).println("Player 2: Make a move");
 
+    }
+
+    @Test
+    public void shouldRedrawBoardWithOInLocation1WhenPlayer2ChoosesLocation1() throws Exception {
+        when(bufferedReader.readLine()).thenReturn("2", "1");
+        game.start();
+        verify(printStream).println("O|X|3\n-----\n4|5|6\n-----\n7|8|9");
     }
 }
