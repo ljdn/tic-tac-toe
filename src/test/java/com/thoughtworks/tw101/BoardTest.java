@@ -16,11 +16,12 @@ public class BoardTest {
 
     private PrintStream printStream;
     private Board board;
+    private String[] cells = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
 
     @Before
     public void setUp() throws Exception {
         printStream = mock(PrintStream.class);
-        board = new Board(printStream);
+        board = new Board(printStream, cells);
     }
 
     @Test
@@ -31,6 +32,13 @@ public class BoardTest {
                 "4|5|6\n" +
                 "-----\n" +
                 "7|8|9");
+
+    }
+
+    @Test
+    public void shouldUpdateCellsWhenUpdating() throws Exception {
+        board.update(1, "X");
+        assertEquals(board.getCell(1), "X");
 
     }
 }

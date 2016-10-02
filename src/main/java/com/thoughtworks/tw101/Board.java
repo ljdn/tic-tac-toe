@@ -7,9 +7,10 @@ import java.io.PrintStream;
  */
 public class Board {
     private PrintStream printStream;
+    private String[] cells;
 
-    public Board(PrintStream printStream) {
-
+    public Board(PrintStream printStream, String[] cells) {
+        this.cells = cells;
         this.printStream = printStream;
     }
 
@@ -23,6 +24,10 @@ public class Board {
     }
 
     public void update(int location, String symbol) {
+        cells[location-1] = symbol;
+    }
 
+    public String getCell(int location) {
+        return cells[location-1];
     }
 }

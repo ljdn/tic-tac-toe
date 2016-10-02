@@ -10,7 +10,8 @@ import java.io.PrintStream;
 public class Main {
     public static void main(String[] args) {
         PrintStream printStream = new PrintStream(System.out);
-        Board board = new Board(printStream);
+        String[] cells = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
+        Board board = new Board(printStream, cells);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         Player player1 = new Player(bufferedReader, printStream, board, "X");
         Player player2 = new Player(bufferedReader, printStream, board, "O");
