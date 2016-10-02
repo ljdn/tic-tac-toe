@@ -6,6 +6,8 @@ import org.junit.Test;
 import java.io.BufferedReader;
 import java.io.PrintStream;
 
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.contains;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -48,6 +50,15 @@ public class PlayerTest {
         when(bufferedReader.readLine()).thenReturn("1");
         player1.move();
         verify(board).update(1, "X");
+
+    }
+
+    @Test
+    public void shouldDisplayErrorMessageIfLocationIsTakenWhenMoving() throws Exception {
+        when(bufferedReader.readLine()).thenReturn("1");
+        when(board.cellIsOccupied(anyInt())).thenReturn(true);
+        player1.move();
+        verify(printStream).println(contains("taken"));
 
     }
 }

@@ -26,4 +26,8 @@ public class Board {
     public String getCell(int location) {
         return cells[location-1];
     }
+
+    public boolean cellIsOccupied(int location) {
+        return true;
+    }
 }

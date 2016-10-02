@@ -2,7 +2,6 @@ package com.thoughtworks.tw101;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InterruptedIOException;
 import java.io.PrintStream;
 
 /**
@@ -24,7 +23,12 @@ public class Player {
     public void move() {
         printStream.println("Choose a number between 1 and 9 to move");
         int location = getInput();
-        board.update(location, this.symbol);
+        if (board.cellIsOccupied(location)) {
+            printStream.println("This location is taken, try again");
+        } else {
+            board.update(location, this.symbol);
+        }
+
         board.draw();
     }
 
