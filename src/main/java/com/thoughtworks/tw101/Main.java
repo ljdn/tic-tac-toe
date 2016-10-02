@@ -7,7 +7,7 @@ import com.thoughtworks.tw101.Game;
  */
 public class Main {
     public static void main(String[] args) {
-        Game game = new Game(new Board());
+        Game game = new Game(new Board(System.out));
         game.start();
     }
 }

@@ -12,10 +12,11 @@ import static org.mockito.Mockito.verify;
  */
 public class GameTest {
     private Game game;
-    Board board = mock(Board.class);
+    private Board board;
 
     @Before
     public void setUp() throws Exception {
+        board = mock(Board.class);
         game = new Game(board);
     }
 
