@@ -25,7 +25,7 @@ public class BoardTest {
     }
 
     @Test
-    public void shouldPrintGridWhenDrawing() throws Exception {
+    public void shouldPrintGridWhenDrawingBoardAtBeginning() throws Exception {
         board.draw();
         verify(printStream).println("1|2|3\n" +
                 "-----\n" +
@@ -39,6 +39,18 @@ public class BoardTest {
     public void shouldUpdateCellsWhenUpdating() throws Exception {
         board.update(1, "X");
         assertEquals(board.getCell(1), "X");
+
+    }
+
+    @Test
+    public void shouldRedrawBoardWithMarksInPlace() throws Exception {
+        board.update(1, "X");
+        board.draw();
+        verify(printStream).println("X|2|3\n" +
+                "-----\n" +
+                "4|5|6\n" +
+                "-----\n" +
+                "7|8|9");
 
     }
 }

@@ -17,5 +17,6 @@ public class Game {
     public void start() {
         board.draw();
         player1.move();
+        player2.move();
     }
 }

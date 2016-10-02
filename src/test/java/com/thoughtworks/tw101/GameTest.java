@@ -41,4 +41,10 @@ public class GameTest {
 
     }
 
+    @Test
+    public void shouldPromptPlayer2ForMoveAfterPlayer1() throws Exception {
+        game.start();
+        verify(player2).move();
+
+    }
 }
