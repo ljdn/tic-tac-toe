@@ -40,4 +40,5 @@ public class GameTest {
         verify(player1).move();
 
     }
+
 }

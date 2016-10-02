@@ -21,4 +21,8 @@ public class Board {
                 "7|8|9");
 
     }
+
+    public void update(int location, String symbol) {
+
+    }
 }
